@@ -31,7 +31,7 @@ namespace NComics.Tests
                     _comicsBook = new ComicsBook(_pageReader.Object);
                 };
 
-            Because of = () => _comicsBook.Load(_directory);
+            Because of = () => _comicsBook.Open(_directory);
 
             It should_load_all_files_in_the_directory = () =>
                 {

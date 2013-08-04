@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
 using NComics.Domain;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace NComics
 {
@@ -26,34 +17,28 @@ namespace NComics
         public MainWindow()
         {
             InitializeComponent();
+            _book = new ComicsBook(CurrentImage);
         }
 
-        private void NewClick(object sender, RoutedEventArgs e)
+        private void OpenFolder(object sender, RoutedEventArgs e)
         {
-            var dialogue = new OpenFileDialog();
+            var dialogue = new FolderBrowserDialog();
             var result = dialogue.ShowDialog();
-            if (result.Value)
+            if (result == System.Windows.Forms.DialogResult.OK)
             {
-                _book = new ComicsBook(dialogue.FileName);
-                DisplayPage(_book.CurrentPage);
+                _book.Open(dialogue.SelectedPath);
+                _book.OpenFirstPageOn(CurrentImage);
             }
         }
 
-        private void DisplayPage(ComicsPage page)
+        private void GoPrevious(object sender, RoutedEventArgs e)
         {
-            CurrentImage.Source = page.GetBitmap();
+            _book.OpenPrevious();
         }
 
-        private void WindowKeyDown(object sender, KeyEventArgs e)
+        private void GoNext(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.Right)
-            {
-                if (_book != null)
-                {
-                    DisplayPage(_book.ReadNext());
-                }
-            }
-                
+            _book.OpenNext();
         }
     }
 }

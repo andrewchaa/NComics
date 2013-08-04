@@ -12,6 +12,11 @@ namespace NComics.Domain
             return string.Equals(_fileName, other._fileName);
         }
 
+        public override string ToString()
+        {
+            return _fileName;
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
