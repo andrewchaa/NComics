@@ -1,7 +1,7 @@
 ﻿<Window x:Class="NComics.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="672.388" Width="993.657">
+        Title="MainWindow" Height="672.388" Width="993.657" KeyDown="WindowKeyDown">
     <Grid>
         <Menu IsMainMenu="True" Margin="0,0,0,564" VerticalAlignment="Top" >
             <MenuItem Header="_File">

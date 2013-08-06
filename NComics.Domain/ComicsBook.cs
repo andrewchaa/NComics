@@ -72,7 +72,6 @@ namespace NComics.Domain
         {
             _index -= 1;
             ShowImage();
-
         }
 
         public void OpenNext()

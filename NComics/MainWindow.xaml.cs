@@ -40,5 +40,13 @@ namespace NComics
         {
             _book.OpenNext();
         }
+
+        private void WindowKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)
+                _book.OpenPrevious();
+            if (e.Key == Key.Right)
+                _book.OpenNext();
+        }
     }
 }
